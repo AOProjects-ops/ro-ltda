@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Galería | {{ company_legal_name }}{% endblock %}
+{% block description %}Galería de fotos del equipo de {{ company_legal_name }} en su día a día. Haz clic en cualquier foto para ampliarla.{% endblock %}
+
+{% block content %}
+<section class="hero-inner hero-gallery py-5">
+  <div class="container">
+    <span class="eyebrow">Nuestro equipo</span>
+    <h1 class="mt-2 mb-3">Galería RO</h1>
+    <p class="lead" style="max-width:760px;">Las personas que hacen posible cada servicio, todos los días. Haz clic en cualquier foto para ampliarla.</p>
+  </div>
+</section>
+
+<div class="dot-divider"></div>
+
+<section>
+  <div class="container">
+    <div class="row g-3 g-md-4">
+      <div class="col-6 col-md-4">
+        <div class="gallery-box gallery-box-tall lightbox-trigger gallery-ring-magenta">
+          <img src="{{ url_for('static', filename='img/' + hero_image) }}" alt="Equipo completo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+      {% for img in gallery_images %}
+      <div class="col-6 col-md-4">
+        <div class="gallery-box lightbox-trigger {{ loop.cycle('gallery-ring-amber','gallery-ring-purple','gallery-ring-gold','gallery-ring-magenta') }}">
+          <img src="{{ url_for('static', filename='img/gallery/' + img) }}" loading="lazy" alt="Equipo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft">
+  <div class="container">
+    <div class="cta-band text-center">
+      <div class="cta-content">
+        <h3 class="mb-2">¿Quieres conocer más sobre RO?</h3>
+        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Escríbenos y un asesor te contará todo lo que podemos hacer por tu empresa.</p>
+        <a href="{{ url_for('main.contact') }}" class="btn btn-ro btn-lg">Contáctanos ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

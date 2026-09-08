@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Servicios | {{ company_legal_name }}{% endblock %}
+{% block description %}Portafolio de servicios de {{ company_legal_name }}: gestión de talento humano, gestión documental, asesoría legal y administrativa, gestión comercial, tecnología y comunicación visual.{% endblock %}
+
+{% block content %}
+<section class="hero-inner hero-services py-5">
+  <div class="container">
+    <span class="eyebrow">Portafolio</span>
+    <h1 class="mt-2 mb-3">Nuestros servicios</h1>
+    <p class="lead" style="max-width:760px;">Más de 20 soluciones agrupadas en 5 grandes frentes de gestión, diseñadas para acompañar a tu organización en cada etapa.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <!-- Navegación rápida entre categorías -->
+    <div class="d-flex flex-wrap gap-2 mb-5">
+      {% for cat in service_categories %}
+      <a href="#{{ cat.slug }}" class="btn btn-ro-outline-dark btn-sm {{ loop.cycle('chip-nav-amber','chip-nav-magenta','chip-nav-purple','chip-nav-gold','chip-nav-magdeep') }}"><i class="bi {{ cat.icon }} me-1"></i>{{ cat.title }}</a>
+      {% endfor %}
+    </div>
+
+    {% for cat in service_categories %}
+    {% set colorname = loop.cycle('amber','magenta','purple','gold','magdeep') %}
+    <div id="{{ cat.slug }}" class="mb-5" style="scroll-margin-top: 100px;">
+      <div class="d-flex align-items-center gap-3 mb-1">
+        <div class="circle-icon circle-icon-{{ 'gold' if colorname == 'magdeep' else colorname }}" style="width:52px;height:52px;min-width:52px;font-size:1.35rem;"><i class="bi {{ cat.icon }}"></i></div>
+        <div>
+          <h3 class="mb-0">{{ cat.title }}</h3>
+          <p class="text-muted small mb-0">{{ cat.summary }}</p>
+        </div>
+      </div>
+
+      <div class="accordion accordion-ro mt-4" id="accordion-{{ cat.slug }}">
+        {% for s in cat.services %}
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-{{ cat.slug }}-{{ loop.index }}">
+              {{ s.title }}
+            </button>
+          </h2>
+          <div id="collapse-{{ cat.slug }}-{{ loop.index }}" class="accordion-collapse collapse"
+               data-bs-parent="#accordion-{{ cat.slug }}">
+            <div class="accordion-body text-muted">
+              {{ s.text }}
+              <div class="mt-3">
+                <a href="{{ url_for('main.contact') }}" class="fw-semibold small">Solicitar este servicio <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="cta-band text-center">
+      <div class="cta-content">
+        <h3 class="mb-2">¿No encuentras lo que necesitas?</h3>
+        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Cuéntanos tu reto y diseñamos una solución a la medida de tu organización.</p>
+        <a href="{{ url_for('main.contact') }}" class="btn btn-ro btn-lg">Hablar con un asesor</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

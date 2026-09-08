@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Contacto | {{ company_legal_name }}{% endblock %}
+
+{% block content %}
+<section class="hero-inner hero-contact py-5">
+  <div class="container">
+    <span class="eyebrow">Contacto</span>
+    <h1 class="mt-2 mb-3">Hablemos de los próximos desafíos de tu empresa</h1>
+    <p class="lead" style="max-width:700px;">Agenda una reunión para entender tu contexto, explorar prioridades y construir juntos una solución a la medida de tu organización.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h4 class="mb-4">Información de contacto</h4>
+        <div class="contact-info-item">
+          <div class="circle-icon circle-icon-magenta"><i class="bi bi-envelope"></i></div>
+          <div>
+            <div class="fw-semibold">Correo</div>
+            <div class="text-muted small">{{ company_email }}</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="circle-icon circle-icon-amber"><i class="bi bi-telephone"></i></div>
+          <div>
+            <div class="fw-semibold">Teléfono</div>
+            <div class="text-muted small">{{ company_phone }}</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="circle-icon circle-icon-purple"><i class="bi bi-whatsapp"></i></div>
+          <div>
+            <div class="fw-semibold">WhatsApp</div>
+            <div class="text-muted small"><a href="https://wa.me/{{ company_whatsapp }}">Escríbenos directamente</a></div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="circle-icon circle-icon-gold"><i class="bi bi-geo-alt"></i></div>
+          <div>
+            <div class="fw-semibold">Ubicación</div>
+            <div class="text-muted small">{{ company_address }}</div>
+          </div>
+        </div>
+        <p class="text-muted small mt-4">Un asesor de {{ company_name }} se pondrá en contacto contigo en menos de 24 horas hábiles.</p>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="ro-card contact-form-card">
+          <form method="POST" action="{{ url_for('main.contact') }}" novalidate>
+            {{ form.hidden_tag() }} {# <- token CSRF, obligatorio en todo formulario POST #}
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                {{ form.name.label(class_="form-label") }}
+                {{ form.name(class_="form-control" + (" is-invalid" if form.name.errors else "")) }}
+                {% for error in form.name.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-md-6">
+                {{ form.email.label(class_="form-label") }}
+                {{ form.email(class_="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                {% for error in form.email.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-md-6">
+                {{ form.phone.label(class_="form-label") }}
+                {{ form.phone(class_="form-control" + (" is-invalid" if form.phone.errors else "")) }}
+                {% for error in form.phone.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-md-6">
+                {{ form.company.label(class_="form-label") }}
+                {{ form.company(class_="form-control" + (" is-invalid" if form.company.errors else "")) }}
+                {% for error in form.company.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-12">
+                {{ form.service_interest.label(class_="form-label") }}
+                {{ form.service_interest(class_="form-select" + (" is-invalid" if form.service_interest.errors else "")) }}
+                {% for error in form.service_interest.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-12">
+                {{ form.message.label(class_="form-label") }}
+                {{ form.message(class_="form-control" + (" is-invalid" if form.message.errors else ""), rows="5") }}
+                {% for error in form.message.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-ro btn-lg w-100">Enviar mensaje</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,12 @@
+<!-- Lightbox reutilizable: cualquier elemento con class="lightbox-trigger" y
+     data-full-src abre este modal para ampliar la foto. -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-labelledby="lightboxModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content lightbox-modal-content">
+      <button type="button" class="btn-close btn-close-white lightbox-modal-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      <div class="modal-body p-0 text-center">
+        <img id="lightboxImage" src="" alt="{{ company_legal_name }}" class="lightbox-image">
+      </div>
+    </div>
+  </div>
+</div>

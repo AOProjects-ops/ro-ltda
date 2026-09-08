@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}{{ company_legal_name }} | {{ company_tagline }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ company_legal_name }}: {{ company_tagline }}.{% endblock %}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ request.url_root }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ company_legal_name }}">
+  <meta property="og:description" content="{{ company_tagline }}.">
+  <meta property="og:image" content="{{ url_for('static', filename='img/logo.png', _external=True) }}">
+
+  <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/font/bootstrap-icons.min.css') }}" rel="stylesheet">
+
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  {% include "includes/navbar.html" %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="container mt-3">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'success' if category == 'success' else category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "includes/footer.html" %}
+
+  {% include "includes/welcome_modal.html" %}
+
+  {% include "includes/lightbox.html" %}
+
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

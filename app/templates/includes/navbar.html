@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-ro sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('main.home') }}">
+      <img src="{{ url_for('static', filename='img/logo-dark-bg.png') }}" alt="Logo {{ company_legal_name }}">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRO"
+            aria-controls="navbarRO" aria-expanded="false" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarRO">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.about') }}">Quiénes somos</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="serviciosDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="serviciosDropdown">
+            {% for cat in service_categories %}
+            <li><a class="dropdown-item" href="{{ url_for('main.services') }}#{{ cat.slug }}">{{ cat.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.gallery') }}">Galería</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('main.contact') }}">Contacto</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-whatsapp-pill btn-sm" href="https://wa.me/{{ company_whatsapp }}" target="_blank" rel="noopener">
+            <i class="bi bi-whatsapp me-1"></i>Escríbenos por WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block title %}Quiénes somos | {{ company_legal_name }}{% endblock %}
+
+{% block content %}
+<section class="hero-inner hero-about py-5">
+  <div class="container">
+    <span class="eyebrow">Quiénes somos</span>
+    <h1 class="mt-2 mb-3">Una empresa sólida y dinámica al servicio de tu organización</h1>
+    <p class="lead" style="max-width:760px;">{{ about_intro }}</p>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section>
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <span class="eyebrow section-eyebrow">Nuestra historia</span>
+        <h2 class="section-title">Más de una década de experiencia en La Guajira</h2>
+      </div>
+      <div class="col-lg-7">
+        <p class="text-muted">{{ history }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISION / VISION -->
+<section class="bg-ink-band">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="service-card service-card-magenta">
+          <div class="service-card-icon"><i class="bi bi-bullseye"></i></div>
+          <h4>Misión</h4>
+          <p class="mb-0 text-muted">{{ mission }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="service-card service-card-amber">
+          <div class="service-card-icon"><i class="bi bi-eye"></i></div>
+          <h4>Visión</h4>
+          <p class="mb-0 text-muted">{{ vision }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVOS -->
+<section>
+  <div class="container">
+    <div class="text-center mx-auto mb-4" style="max-width:680px;">
+      <span class="eyebrow section-eyebrow">Objetivos</span>
+      <h2 class="section-title">Hacia dónde dirigimos nuestro trabajo</h2>
+    </div>
+    <div class="row g-3">
+      {% for obj in objectives %}
+      <div class="col-md-6">
+        <div class="d-flex gap-3 align-items-start">
+          <div class="circle-icon flex-shrink-0 {{ loop.cycle('circle-icon-amber','circle-icon-magenta','circle-icon-purple','circle-icon-gold') }}" style="width:38px;height:38px;min-width:38px;font-size:1rem;"><i class="bi bi-check2"></i></div>
+          <p class="text-muted mb-0">{{ obj }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="bg-ink-band">
+  <div class="container">
+    <div class="text-center mx-auto mb-5" style="max-width:680px;">
+      <span class="eyebrow section-eyebrow">Valores empresariales</span>
+      <h2 class="section-title text-white mb-0">Los principios que guían cada servicio que prestamos</h2>
+    </div>
+    <div class="row g-4">
+      {% for v in values %}
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card text-center service-card-{{ loop.cycle('magenta','amber','purple','gold') }}">
+          <div class="service-card-icon mx-auto"><i class="bi {{ v.icon }}"></i></div>
+          <h6>{{ v.title }}</h6>
+          <p class="mb-0 text-muted small">{{ v.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FACTORES DE ÉXITO -->
+<section class="bg-ink-band">
+  <div class="container">
+    <div class="text-center mx-auto mb-5" style="max-width:680px;">
+      <span class="eyebrow section-eyebrow">Factores de éxito</span>
+      <h2 class="section-title text-white mb-0">Lo que nos diferencia</h2>
+    </div>
+    <div class="row g-4">
+      {% for f in success_factors %}
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card service-card-{{ loop.cycle('amber','magenta','gold','purple') }}">
+          <div class="service-card-icon"><i class="bi {{ f.icon }}"></i></div>
+          <h6>{{ f.title }}</h6>
+          <p class="mb-0 text-muted small">{{ f.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section class="bg-soft">
+  <div class="container">
+    <div class="text-center mx-auto mb-4" style="max-width:680px;">
+      <span class="eyebrow section-eyebrow">Trayectoria</span>
+      <h2 class="section-title">Empresas que han confiado en RO</h2>
+    </div>
+    <div class="row g-4">
+      {% for c in clients %}
+      <div class="col-md-6">
+        <div class="client-card">
+          <div class="client-name">{{ c.name }}</div>
+          <p class="text-muted small mb-0">{{ c.detail }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-band text-center">
+      <div class="cta-content">
+        <h3 class="mb-2">¿Listo para trabajar con nosotros?</h3>
+        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Escríbenos y un asesor de {{ company_name }} te contactará muy pronto.</p>
+        <a href="{{ url_for('main.contact') }}" class="btn btn-ro btn-lg">Contáctanos ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

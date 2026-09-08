@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="home-hero">
+  <div class="home-hero-flex">
+    <div class="home-hero-text-col">
+      <div class="home-hero-text-inner">
+        <span class="hero-corner-dots" aria-hidden="true"></span>
+        <span class="eyebrow-badge">Bienvenidos a {{ company_legal_name }}</span>
+        <h1 class="mt-3 mb-3">Talento estratégico, tecnología avanzada, <span class="text-gradient">resultados reales</span></h1>
+        <p class="lead mb-3">{{ about_intro }}</p>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <a href="{{ url_for('main.contact') }}" class="btn btn-ro">Cotiza tu servicio</a>
+          <a href="{{ url_for('main.services') }}" class="btn btn-ro-outline-dark">Ver portafolio completo</a>
+        </div>
+        <div class="hero-dots" aria-hidden="true">
+          <span class="hero-dot active"></span>
+          <span class="hero-dot"></span>
+          <span class="hero-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-hero-media-col">
+      <div class="hero-img-wrap lightbox-trigger">
+        <img src="{{ url_for('static', filename='img/' + hero_image) }}" alt="Equipo de {{ company_legal_name }}">
+        <div class="hero-img-shade" aria-hidden="true"></div>
+        <div class="hero-bottom-cut" aria-hidden="true"></div>
+        <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+      </div>
+
+      <svg class="hero-ribbon-svg" viewBox="0 0 170 238" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <!-- Banda superior: morado -> magenta -> rosa, más rica que un solo degradado -->
+          <linearGradient id="roRibbonTop" x1="10%" y1="0%" x2="90%" y2="100%">
+            <stop offset="0%" stop-color="#7A2FE0"/>
+            <stop offset="45%" stop-color="#A61FC9"/>
+            <stop offset="100%" stop-color="#E0007F"/>
+          </linearGradient>
+          <!-- Cara biselada de la banda superior, simula luz pegando en el pliegue -->
+          <linearGradient id="roRibbonTopEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+          </linearGradient>
+          <!-- Banda inferior: ámbar -> naranja -> rojo-ámbar, tomando el cubo del logo -->
+          <linearGradient id="roRibbonBottom" x1="5%" y1="0%" x2="95%" y2="100%">
+            <stop offset="0%" stop-color="#FFC93C"/>
+            <stop offset="50%" stop-color="#FF8A00"/>
+            <stop offset="100%" stop-color="#E03D00"/>
+          </linearGradient>
+          <linearGradient id="roRibbonBottomEdge" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="roRibbonSoftBlur" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+          <!-- Máscara con la silueta exacta del lazo, para recortar el brillo animado -->
+          <clipPath id="roRibbonClip">
+            <polygon points="169,-6 58,-6 3,100 41,136"/>
+            <polygon points="41,136 130,156 56,240 16,240 75,172"/>
+          </clipPath>
+        </defs>
+
+        <!-- Banda amarilla vertical DETRÁS de la banda superior -->
+<polygon points="41,72 77,72 77,137 41,137"
+         fill="url(#roRibbonBottom)"/>
+
+<polygon points="41,72 77,72 77,87 41,87"
+         fill="url(#roRibbonBottomEdge)"
+         opacity="0.5"/>
+
+<!-- Banda superior en 3D: queda ENCIMA de la banda amarilla -->
+<polygon points="169,-6 58,-6 3,100 41,136"
+         fill="url(#roRibbonTop)"/>
+
+<polygon points="169,-6 130,-6 60,110 41,136 85,90"
+         fill="url(#roRibbonTopEdge)"
+         opacity="0.65"/>
+
+
+<!-- Sombra del pliegue donde se cruzan las dos bandas -->
+<polygon points="41,136 60,142 50,150 30,144"
+         fill="#3A0A38"
+         opacity="0.55"
+         filter="url(#roRibbonSoftBlur)"/>
+
+
+<!-- Banda inferior derecha en 3D -->
+<polygon points="81,265 41,265 77,173"
+         fill="url(#roRibbonBottom)"/>
+
+<polygon points="110,185 85,205"
+         fill="url(#roRibbonBottomEdge)"
+         opacity="0.5"/>
+
+
+<!-- Banda inferior en 3D -->
+<polygon points="41,136 118,138 56,240 16,240 52,148"
+         fill="url(#roRibbonBottom)"/>
+
+<polygon points="52,148 118,138 95,160 60,200"
+         fill="url(#roRibbonBottomEdge)"
+         opacity="0.5"/>
+
+
+<!-- Brillo (glint) que recorre el lazo en bucle -->
+<g clip-path="url(#roRibbonClip)">
+
+    <polygon points="-40,-40 -10,-40 40,260 10,260"
+             fill="#ffffff"
+             opacity="0.55">
+
+        <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0,0; 260,0; 260,0"
+            keyTimes="0;0.35;1"
+            dur="4.5s"
+            repeatCount="indefinite"/>
+
+    </polygon>
+
+</g>
+
+      <div class="hero-stat-card">
+        <i class="bi bi-award-fill"></i>
+        <div>
+          <strong>+20 años</strong>
+          <span>de experiencia</span>
+        </div>
+      </div>
+
+      <div class="hero-badge-card">
+        <i class="bi bi-people-fill"></i>
+        <div>
+          <strong>Talento humano</strong>
+          <span>con propósito</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="portafolio" class="bg-ink-band">
+  <div class="container">
+    <div class="text-center mx-auto mb-5" style="max-width:640px;">
+      <span class="eyebrow section-eyebrow" style="color:var(--ro-amber);">Nuestros servicios</span>
+      <h2 class="section-title text-white mb-0">Soluciones a la medida de tu negocio</h2>
+    </div>
+    <div class="row g-4">
+      {% for cat in service_categories %}
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ url_for('main.services') }}#{{ cat.slug }}" class="text-decoration-none text-reset">
+          <div class="service-card service-card-{{ loop.cycle('magenta', 'amber', 'purple', 'gold', 'magenta') }}">
+            <div class="service-card-icon"><i class="bi {{ cat.icon }}"></i></div>
+            <h5>{{ cat.title }}</h5>
+            <p class="text-muted small mb-0">{{ cat.summary }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ url_for('main.services') }}" class="btn btn-ro-outline">Ver todo el portafolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria" class="bg-soft">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+      <div class="text-center text-md-start mx-auto mx-md-0" style="max-width:680px;">
+        <span class="eyebrow section-eyebrow">Nuestro equipo</span>
+        <h2 class="section-title mb-1">Galería RO</h2>
+        <p class="section-subtitle mb-0">Las personas que hacen posible cada servicio, todos los días. Haz clic en cualquier foto para ampliarla.</p>
+      </div>
+      <a href="{{ url_for('main.gallery') }}" class="btn btn-ro-outline-dark mt-3 mt-md-0 mx-auto mx-md-0">Ver galería completa</a>
+    </div>
+    <div class="row g-3 g-md-4">
+      <div class="col-6 col-lg-3">
+        <div class="gallery-box lightbox-trigger">
+          <img id="gallery-slot-0" src="{{ url_for('static', filename='img/gallery/' + gallery_images[0]) }}" alt="Equipo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="gallery-box lightbox-trigger">
+          <img id="gallery-slot-1" src="{{ url_for('static', filename='img/gallery/' + gallery_images[1]) }}" alt="Equipo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="gallery-box lightbox-trigger">
+          <img id="gallery-slot-2" src="{{ url_for('static', filename='img/gallery/' + gallery_images[2]) }}" alt="Equipo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="gallery-box lightbox-trigger">
+          <img id="gallery-slot-3" src="{{ url_for('static', filename='img/gallery/' + gallery_images[3]) }}" alt="Equipo de {{ company_legal_name }}">
+          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Datos para la rotación aleatoria de la galería (ver static/js/main.js) -->
+<script>
+  window.RO_GALLERY_IMAGES = {{ gallery_images | tojson }};
+  window.RO_GALLERY_BASE_URL = "{{ url_for('static', filename='img/gallery/') }}";
+</script>
+
+<!-- VALORES + CONTACTO + INFO -->
+<section id="contacto-inicio">
+  <div class="container">
+    <div class="row g-4 g-lg-5">
+      <div class="col-lg-4">
+        <span class="eyebrow section-eyebrow">Nuestros valores</span>
+        <div class="row g-3 mt-1">
+          {% for v in values[:4] %}
+          <div class="col-6">
+            <div class="value-mini-card">
+              <div class="value-mini-icon value-mini-icon-{{ loop.cycle('magenta', 'amber', 'purple', 'gold') }}"><i class="bi {{ v.icon }}"></i></div>
+              <h6 class="mb-1">{{ v.title }}</h6>
+              <p class="mb-0 small text-muted">{{ v.text }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{{ url_for('main.about') }}" class="fw-semibold d-inline-block mt-3">Ver todos nuestros valores <i class="bi bi-arrow-right"></i></a>
+      </div>
+
+      <div class="col-lg-4">
+        <span class="eyebrow section-eyebrow">¿Tienes alguna consulta?</span>
+        <form method="POST" action="{{ url_for('main.contact') }}" class="mt-1" novalidate>
+          {{ form.hidden_tag() }}
+          <input type="hidden" name="next" value="{{ url_for('main.home') }}#contacto-inicio">
+          <div class="d-none">
+            {{ form.company() }}
+            {{ form.service_interest() }}
+          </div>
+          <div class="row g-2">
+            <div class="col-sm-6">
+              {{ form.name(class_="form-control", placeholder="Nombre completo") }}
+            </div>
+            <div class="col-sm-6">
+              {{ form.email(class_="form-control", placeholder="Correo electrónico") }}
+            </div>
+            <div class="col-12">
+              {{ form.phone(class_="form-control", placeholder="Teléfono") }}
+            </div>
+            <div class="col-12">
+              {{ form.message(class_="form-control", placeholder="Escribe tu mensaje", rows="4") }}
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-ro w-100">Enviar mensaje <i class="bi bi-send ms-1"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="contact-info-panel">
+          <span class="eyebrow" style="color:rgba(255,255,255,0.85);">Información de contacto</span>
+          <div class="contact-info-panel-item">
+            <i class="bi bi-telephone-fill"></i>
+            <span>{{ company_phone }}</span>
+          </div>
+          <div class="contact-info-panel-item">
+            <i class="bi bi-envelope-fill"></i>
+            <span>{{ company_email }}</span>
+          </div>
+          <div class="contact-info-panel-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>{{ company_address }}</span>
+          </div>
+          <div class="contact-info-panel-item">
+            <i class="bi bi-clock-fill"></i>
+            <span>Lunes a Viernes<br>8:00 AM - 5:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

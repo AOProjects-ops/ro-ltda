@@ -19,8 +19,13 @@
   --ro-white: #FFFFFF;
 
   --ro-gradient: linear-gradient(120deg, var(--ro-amber) 0%, var(--ro-magenta) 50%, var(--ro-purple) 100%);
-  /* Fondo oscuro "retazos": morado -> magenta -> naranja, con textura de puntos y resplandores */
-  --ro-dark-gradient: linear-gradient(150deg, #180B3F 0%, #130A2E 28%, #260C33 52%, #451025 76%, #7A2A10 100%);
+  /* Fondo oscuro de secciones (antes degradado "retazos"): ahora color sólido, sin mezcla de tonos */
+  --ro-dark-gradient: var(--ro-ink);
+
+  /* Color estandarizado de TODOS los botones sólidos del sitio (tono de "Contáctanos") */
+  --ro-btn-gradient: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
+  --ro-btn-gradient-hover: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
+  --ro-btn-shadow: rgba(163, 28, 144, 0.4);
 }
 
 * { scroll-behavior: smooth; }
@@ -134,21 +139,22 @@ a:hover { color: var(--ro-purple); }
 }
 
 .btn-ro {
-  background: var(--ro-gradient);
+  background: var(--ro-btn-gradient);
   border: none;
   color: var(--ro-white) !important;
   font-weight: 700;
   padding: 0.65rem 1.6rem;
   border-radius: 50px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .btn-ro:hover {
+  background: var(--ro-btn-gradient-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(214, 36, 140, 0.35);
+  box-shadow: 0 10px 24px var(--ro-btn-shadow);
   color: var(--ro-white) !important;
 }
 .btn-ro-solid {
-  background: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
+  background: var(--ro-btn-gradient);
   border: none;
   color: var(--ro-white) !important;
   font-weight: 700;
@@ -157,9 +163,9 @@ a:hover { color: var(--ro-purple); }
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 .btn-ro-solid:hover {
-  background: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
+  background: var(--ro-btn-gradient-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(163, 28, 144, 0.4);
+  box-shadow: 0 10px 24px var(--ro-btn-shadow);
   color: var(--ro-white) !important;
 }
 .btn-ro-outline {
@@ -188,7 +194,7 @@ a:hover { color: var(--ro-purple); }
   color: var(--ro-white) !important;
 }
 .btn-whatsapp-pill {
-  background: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
+  background: var(--ro-btn-gradient);
   border: none;
   color: var(--ro-white) !important;
   font-weight: 700;
@@ -200,7 +206,7 @@ a:hover { color: var(--ro-purple); }
   transition: transform 0.2s ease, background 0.2s ease;
 }
 .btn-whatsapp-pill:hover {
-  background: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
+  background: var(--ro-btn-gradient-hover);
   color: var(--ro-white) !important;
   transform: translateY(-1px);
 }
@@ -504,18 +510,7 @@ section { padding: 5rem 0; }
   z-index: 0;
   pointer-events: none;
 }
-/* "Retazos" de color: resplandores difuminados en las esquinas, tomados de la paleta del logo */
-.bg-ink-band::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 10% 12%, rgba(240, 0, 127, 0.35), transparent 40%),
-    radial-gradient(circle at 92% 18%, rgba(132, 37, 240, 0.28), transparent 38%),
-    radial-gradient(circle at 88% 92%, rgba(255, 122, 0, 0.5), transparent 45%);
-  z-index: 0;
-  pointer-events: none;
-}
+/* Resplandores de color eliminados: el fondo ahora es un color sólido, sin mezcla de tonos */
 .bg-ink-band > .container {
   position: relative;
   z-index: 1;
@@ -870,14 +865,7 @@ section { padding: 5rem 0; }
   background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.6px, transparent 1.6px);
   background-size: 26px 26px;
 }
-.cta-band::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 8% 15%, rgba(240, 0, 127, 0.32), transparent 40%),
-    radial-gradient(circle at 90% 85%, rgba(255, 122, 0, 0.48), transparent 45%);
-}
+/* Resplandores de color eliminados: el fondo ahora es un color sólido, sin mezcla de tonos */
 .cta-band .cta-content { position: relative; z-index: 1; }
 
 /* ---------- Contacto ---------- */
@@ -1036,17 +1024,18 @@ footer.ro-footer .social-icon:hover { background: var(--ro-amber); color: var(--
   bottom: 94px;
   right: 24px;
   z-index: 1040;
-  background: var(--ro-gradient);
+  background: var(--ro-btn-gradient);
   color: var(--ro-white);
   border: none;
   font-weight: 700;
   font-size: 0.85rem;
   border-radius: 50px;
   padding: 0.75rem 1.3rem;
-  box-shadow: 0 10px 25px rgba(214, 36, 140, 0.35);
-  transition: transform 0.2s ease;
+  box-shadow: 0 10px 25px var(--ro-btn-shadow);
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 .welcome-float:hover {
+  background: var(--ro-btn-gradient-hover);
   transform: translateY(-2px);
   color: var(--ro-white);
 }

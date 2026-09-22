@@ -2,10 +2,10 @@
 {% block title %}Contacto | {{ company_legal_name }}{% endblock %}
 
 {% block content %}
-<section class="hero-inner hero-contact py-5">
+<section class="hero py-5">
   <div class="container">
     <span class="eyebrow">Contacto</span>
-    <h1 class="mt-2 mb-3">Hablemos de los próximos desafíos de tu empresa</h1>
+    <h1 class="mt-2 mb-3">Hablemos de los <span class="text-gradient">próximos desafíos</span> de tu empresa</h1>
     <p class="lead" style="max-width:700px;">Agenda una reunión para entender tu contexto, explorar prioridades y construir juntos una solución a la medida de tu organización.</p>
   </div>
 </section>
@@ -16,28 +16,28 @@
       <div class="col-lg-5">
         <h4 class="mb-4">Información de contacto</h4>
         <div class="contact-info-item">
-          <div class="circle-icon circle-icon-magenta"><i class="bi bi-envelope"></i></div>
+          <div class="icon-wrap"><i class="bi bi-envelope"></i></div>
           <div>
             <div class="fw-semibold">Correo</div>
             <div class="text-muted small">{{ company_email }}</div>
           </div>
         </div>
         <div class="contact-info-item">
-          <div class="circle-icon circle-icon-amber"><i class="bi bi-telephone"></i></div>
+          <div class="icon-wrap"><i class="bi bi-telephone"></i></div>
           <div>
             <div class="fw-semibold">Teléfono</div>
             <div class="text-muted small">{{ company_phone }}</div>
           </div>
         </div>
         <div class="contact-info-item">
-          <div class="circle-icon circle-icon-purple"><i class="bi bi-whatsapp"></i></div>
+          <div class="icon-wrap"><i class="bi bi-whatsapp"></i></div>
           <div>
             <div class="fw-semibold">WhatsApp</div>
             <div class="text-muted small"><a href="https://wa.me/{{ company_whatsapp }}">Escríbenos directamente</a></div>
           </div>
         </div>
         <div class="contact-info-item">
-          <div class="circle-icon circle-icon-gold"><i class="bi bi-geo-alt"></i></div>
+          <div class="icon-wrap"><i class="bi bi-geo-alt"></i></div>
           <div>
             <div class="fw-semibold">Ubicación</div>
             <div class="text-muted small">{{ company_address }}</div>
@@ -47,7 +47,7 @@
       </div>
 
       <div class="col-lg-7">
-        <div class="ro-card contact-form-card">
+        <div class="ro-card">
           <form method="POST" action="{{ url_for('main.contact') }}" novalidate>
             {{ form.hidden_tag() }} {# <- token CSRF, obligatorio en todo formulario POST #}
 

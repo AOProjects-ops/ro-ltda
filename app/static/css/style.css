@@ -6,10 +6,10 @@
    ========================================================= */
 :root {
   --ro-amber: #FFB300;       /* dorado vívido (caras superiores del cubo) */
-  --ro-amber-dark: #FF7A00;  /* naranja vívido (caras inferiores del cubo) */
+  --ro-amber-dark: #FA7606;  /* naranja vívido, tono de la imagen de referencia */
   --ro-amber-deep: #E8490A;  /* naranja-rojo profundo, para resplandores */
-  --ro-magenta: #F0007F;     /* magenta vívido (franja superior del cubo) */
-  --ro-magenta-deep: #A3005C;/* magenta oscuro/vinotinto (franja lateral del cubo) */
+  --ro-magenta: #A31C90;     /* magenta con toque de morado, tono del lazo */
+  --ro-magenta-deep: #6E0A63;/* magenta-morado oscuro, ajustado al mismo tono */
   --ro-purple: #8425F0;      /* morado vívido, complementa el degradado del cubo */
   --ro-purple-deep: #3E1278; /* morado profundo, para fondos oscuros */
   --ro-ink: #10082B;         /* navy-morado muy oscuro, para navbar/franjas oscuras */
@@ -31,7 +31,11 @@ body {
   background-color: var(--ro-white);
 }
 
-h1, h2, h3, h4, .navbar-brand { font-weight: 800; letter-spacing: -0.01em; }
+h1, h2, h3, h4, .navbar-brand {
+  font-family: "Plus Jakarta Sans", "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
 
 .text-gradient {
   background: var(--ro-gradient);
@@ -45,11 +49,27 @@ a:hover { color: var(--ro-purple); }
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--ro-amber-dark);
 }
+.eyebrow-hero {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+}
+.eyebrow-hero::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  bottom: 0;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ro-amber-dark);
+}
+.text-magenta-solid { color: var(--ro-magenta); }
 
 /* ---------- Navbar ---------- */
 .navbar-ro {
@@ -64,18 +84,30 @@ a:hover { color: var(--ro-purple); }
   gap: 10px;
 }
 .navbar-ro .navbar-brand img {
-  height: 46px;
+  height: 52px;
   width: auto;
 }
 .navbar-ro .nav-link {
+  position: relative;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   font-size: 0.93rem;
   margin: 0 4px;
+  padding-bottom: 6px;
 }
 .navbar-ro .nav-link:hover,
 .navbar-ro .nav-link.active {
-  color: var(--ro-amber);
+  color: var(--ro-amber-dark);
+}
+.navbar-ro .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ro-amber-dark);
 }
 .navbar-ro .dropdown-menu {
   border: none;
@@ -115,6 +147,21 @@ a:hover { color: var(--ro-purple); }
   box-shadow: 0 10px 24px rgba(214, 36, 140, 0.35);
   color: var(--ro-white) !important;
 }
+.btn-ro-solid {
+  background: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
+  border: none;
+  color: var(--ro-white) !important;
+  font-weight: 700;
+  padding: 0.65rem 1.6rem;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-ro-solid:hover {
+  background: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(163, 28, 144, 0.4);
+  color: var(--ro-white) !important;
+}
 .btn-ro-outline {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -141,7 +188,7 @@ a:hover { color: var(--ro-purple); }
   color: var(--ro-white) !important;
 }
 .btn-whatsapp-pill {
-  background: var(--ro-magenta);
+  background: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
   border: none;
   color: var(--ro-white) !important;
   font-weight: 700;
@@ -153,7 +200,7 @@ a:hover { color: var(--ro-purple); }
   transition: transform 0.2s ease, background 0.2s ease;
 }
 .btn-whatsapp-pill:hover {
-  background: var(--ro-purple);
+  background: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
   color: var(--ro-white) !important;
   transform: translateY(-1px);
 }
@@ -229,11 +276,11 @@ a:hover { color: var(--ro-purple); }
   z-index: 1;
   display: flex;
   align-items: stretch;
-  min-height: 460px;
+  min-height: 500px;
 }
 .home-hero-text-col {
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 54%;
+  max-width: 54%;
   display: flex;
   align-items: center;
   position: relative;
@@ -241,36 +288,35 @@ a:hover { color: var(--ro-purple); }
 }
 .home-hero-text-inner {
   position: relative;
-  max-width: 460px;
-  margin-left: max(1.5rem, calc((100vw - 1140px) / 2 + 12px));
-  padding: 1.8rem 2rem 1.8rem 0;
+  max-width: 560px;
+  margin-left: max(1rem, calc((100vw - 1140px) / 2 - 12px));
+  padding: 1.8rem 3.5rem 1.8rem 0;
 }
 .home-hero h1 {
   color: var(--ro-ink);
-  font-size: clamp(1.7rem, 2.5vw, 2.15rem);
-  line-height: 1.2;
+  font-size: clamp(1.8rem, 2.6vw, 2.45rem);
+  line-height: 1.18;
 }
 .home-hero .lead {
   color: #555a63;
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-.eyebrow-badge {
-  display: inline-block;
-  background: rgba(245, 166, 35, 0.12);
-  border: 1px solid rgba(245, 166, 35, 0.4);
-  color: var(--ro-amber-dark);
-  font-weight: 700;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  border-radius: 50px;
-  padding: 0.45rem 1rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
 }
 .home-hero .btn {
-  padding: 0.55rem 1.2rem;
-  font-size: 0.88rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
   white-space: nowrap;
+}
+.home-hero .btn-ro-outline-dark {
+  border-radius: 10px;
+  border: 1.5px solid var(--ro-gray-300);
+  background: var(--ro-white);
+  color: var(--ro-ink) !important;
+}
+.home-hero .btn-ro-outline-dark:hover {
+  background: var(--ro-gray-100);
+  border-color: var(--ro-gray-300);
+  color: var(--ro-ink) !important;
 }
 .hero-dots {
   display: flex;
@@ -310,7 +356,9 @@ a:hover { color: var(--ro-purple); }
   height: 100%;
   min-height: 460px;
   object-fit: cover;
+  object-position: center 22%;
   display: block;
+  border-radius: 0;
   transition: transform 0.6s ease;
 }
 .home-hero-media-col:hover .hero-img-wrap img {
@@ -324,19 +372,7 @@ a:hover { color: var(--ro-purple); }
   background: linear-gradient(0deg, rgba(7, 20, 46, 0.55) 0%, rgba(7, 20, 46, 0) 30%, rgba(7, 20, 46, 0) 100%);
   pointer-events: none;
 }
-/* Corte diagonal oscuro en la base de la foto, para "anclarla" visualmente
-   al resto de la página (igual que en la referencia). */
-.hero-bottom-cut {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 46px;
-  z-index: 2;
-  background: var(--ro-ink);
-  clip-path: polygon(0 100%, 100% 45%, 100% 100%);
-  pointer-events: none;
-}
+
 
 /* Retícula de puntos decorativa junto al eyebrow, como en la referencia */
 .hero-corner-dots {
@@ -352,23 +388,24 @@ a:hover { color: var(--ro-purple); }
   z-index: 0;
 }
 
-/* El "lazo" de marca: cinta en 3D (dos caras con bisel + brillo) que cruza
-   la costura entre el texto y la foto. El polígono superior arranca en
-   x=58 (en vez de 94) precisamente para que NUNCA quede visible el borde
-   recto de la foto por encima del lazo, sea cual sea el ancho de pantalla:
-   la esquina de la imagen queda siempre tapada con margen de sobra. */
+/* El "lazo" de marca: UN solo SVG (bandas + fragmentos + pliegue) con su propio
+   sistema de coordenadas. Se dimensiona por la ALTURA del hero y conserva su
+   proporción (aspect-ratio + width:auto), de modo que ninguna pieza se
+   deforma ni se desacomoda: solo escala. Queda anclado a la costura entre el
+   texto y la foto (el 48.75% de su ancho cae a la izquierda de la costura). */
 .hero-ribbon-svg {
   position: absolute;
-  top: 0;
-  left: -104px;
-  width: 230px;
-  height: 100%;
+  top: -6px;
+  left: 0;
+  height: calc(100% + 12px);
+  width: auto;
+  aspect-ratio: 400 / 606;
+  transform: translateX(-48.75%);
+  overflow: visible;
   z-index: 3;
   pointer-events: none;
-  filter:
-    drop-shadow(0 12px 26px rgba(139, 20, 130, 0.4))
-    drop-shadow(0 4px 10px rgba(7, 20, 46, 0.3));
 }
+
 .hero-badge-card {
   position: absolute;
   right: 24px;
@@ -394,8 +431,8 @@ a:hover { color: var(--ro-purple); }
   flex: none;
   border-radius: 50%;
   font-size: 1.05rem;
-  color: var(--ro-white);
-  background: linear-gradient(135deg, var(--ro-magenta), var(--ro-amber));
+  color: var(--ro-magenta);
+  background: rgba(255, 255, 255, 0.08);
 }
 .hero-badge-card strong {
   display: block;
@@ -403,63 +440,46 @@ a:hover { color: var(--ro-purple); }
   line-height: 1.2;
 }
 .hero-badge-card span {
+  position: relative;
+  display: inline-block;
   font-size: 0.76rem;
   color: rgba(255, 255, 255, 0.7);
+  padding-bottom: 6px;
 }
-
-/* Segunda insignia flotante: refuerza credibilidad ("+20 años") */
-.hero-stat-card {
+.hero-badge-card span::after {
+  content: "";
   position: absolute;
-  left: 24px;
-  top: 24px;
-  z-index: 4;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(6px);
-  color: var(--ro-ink);
-  border-radius: 14px;
-  padding: 0.7rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  box-shadow: 0 14px 28px rgba(7, 20, 46, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-.hero-stat-card i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  flex: none;
-  border-radius: 50%;
-  font-size: 0.95rem;
-  color: var(--ro-white);
-  background: linear-gradient(135deg, var(--ro-amber), var(--ro-magenta));
-}
-.hero-stat-card strong {
-  display: block;
-  font-size: 0.85rem;
-  line-height: 1.15;
-  color: var(--ro-ink);
-}
-.hero-stat-card span {
-  font-size: 0.7rem;
-  color: #6b7280;
+  left: 0;
+  bottom: 0;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ro-amber-dark);
 }
 
+
+/* Escritorio medio: el lazo escala con el hero, así que se le da más aire al texto */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .home-hero-text-col { flex-basis: 58%; max-width: 58%; }
+  .home-hero-text-inner { max-width: 440px; padding-right: 2.6rem; }
+}
+
+/* Tablet y móvil: el hero se apila (texto arriba, foto abajo) y el lazo se
+   conserva completo, escalado a la altura de la foto y pegado a su borde izquierdo. */
 @media (max-width: 991.98px) {
   .home-hero-flex { flex-direction: column; min-height: 0; }
   .home-hero-text-col { flex: 1 1 auto; max-width: 100%; }
   .home-hero-text-inner { margin-left: 0; padding: 3rem 1.5rem 2rem; max-width: 100%; }
-  .home-hero-media-col { height: 380px; width: 100%; }
-  .hero-ribbon-svg { display: none; }
+  .home-hero-media-col { height: 420px; width: 100%; }
+  .home-hero-media-col .hero-img-wrap img { min-height: 0; }
+  .hero-ribbon-svg { transform: translateX(-30%); }
   .hero-corner-dots { display: none; }
 }
 @media (max-width: 575.98px) {
-  .home-hero-media-col { height: 300px; }
+  .home-hero-media-col { height: 340px; }
+  .hero-ribbon-svg { transform: translateX(-38%); }
   .hero-badge-card { right: 12px; bottom: 12px; padding: 0.65rem 0.9rem; }
-  .hero-stat-card { left: 12px; top: 12px; padding: 0.55rem 0.8rem; }
-  .hero-stat-card span, .hero-badge-card span { display: none; }
+  .hero-badge-card span { display: none; }
 }
 
 /* ---------- Secciones ---------- */
@@ -1034,144 +1054,6 @@ footer.ro-footer .social-icon:hover { background: var(--ro-amber); color: var(--
 @media (max-width: 575.98px) {
   .welcome-float span { display: none; }
   .welcome-modal-content .modal-body { padding: 1.4rem 1.2rem 1.8rem; }
-}
-
-/* =========================================================
-   PÁGINAS INTERNAS — mismo lenguaje visual del home
-   (Nosotros, Servicios, Galería, Contacto): héroe oscuro con
-   destellos de color y trama de puntos (igual que .bg-ink-band
-   en el home), más tarjetas de servicio (ícono circular de
-   color + borde inferior + "retazo" en la esquina).
-   ========================================================= */
-.hero-inner {
-  position: relative;
-  overflow: hidden;
-  color: var(--ro-white);
-  padding: 5.5rem 0 4.5rem;
-  background: var(--ro-dark-gradient);
-}
-/* Trama de puntos, igual que .bg-ink-band::before */
-.hero-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.6px, transparent 1.6px);
-  background-size: 26px 26px;
-  pointer-events: none;
-}
-/* Destellos de color tomados de la paleta del logo, con
-   variables para que cada página tenga su propia mezcla */
-.hero-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(circle at 10% 15%, var(--glow-1, rgba(240, 0, 127, 0.35)), transparent 42%),
-    radial-gradient(circle at 92% 20%, var(--glow-2, rgba(132, 37, 240, 0.28)), transparent 40%),
-    radial-gradient(circle at 85% 95%, var(--glow-3, rgba(255, 122, 0, 0.5)), transparent 48%);
-  pointer-events: none;
-}
-.hero-inner > .container { position: relative; z-index: 1; }
-.hero-inner .eyebrow { color: var(--ro-amber); }
-.hero-inner .lead { color: rgba(255, 255, 255, 0.78); }
-
-/* --- Variante NOSOTROS --- */
-.hero-about { --glow-1: rgba(255, 179, 0, 0.4); --glow-2: rgba(240, 0, 127, 0.32); --glow-3: rgba(132, 37, 240, 0.42); }
-/* --- Variante SERVICIOS --- */
-.hero-services { --glow-1: rgba(132, 37, 240, 0.38); --glow-2: rgba(240, 0, 127, 0.32); --glow-3: rgba(255, 122, 0, 0.45); }
-/* --- Variante GALERÍA --- */
-.hero-gallery { --glow-1: rgba(255, 122, 0, 0.42); --glow-2: rgba(240, 0, 127, 0.3); --glow-3: rgba(132, 37, 240, 0.38); }
-/* --- Variante CONTACTO --- */
-.hero-contact { --glow-1: rgba(132, 37, 240, 0.4); --glow-2: rgba(240, 0, 127, 0.35); --glow-3: rgba(255, 179, 0, 0.42); }
-
-@media (max-width: 767.98px) {
-  .hero-inner { padding: 3.2rem 0 2.6rem; text-align: center; }
-}
-
-/* .service-card se usa fuera del home (Nosotros, Servicios,
-   Contacto); ampliamos el color de texto a h4/h6 además de h5 */
-.service-card h4, .service-card h5, .service-card h6 { position: relative; z-index: 1; color: var(--ro-ink); }
-
-/* Ícono circular de color reutilizable (contacto, categorías de servicio) */
-.circle-icon {
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ro-white);
-  font-size: 1.15rem;
-  box-shadow: 0 10px 20px -8px rgba(20, 21, 26, 0.4);
-}
-.circle-icon-magenta { background: linear-gradient(135deg, var(--ro-magenta), var(--ro-magenta-deep)); }
-.circle-icon-amber { background: linear-gradient(135deg, var(--ro-amber-dark), var(--ro-amber-deep)); }
-.circle-icon-purple { background: linear-gradient(135deg, var(--ro-purple), var(--ro-purple-deep)); }
-.circle-icon-gold { background: linear-gradient(135deg, var(--ro-amber), var(--ro-amber-dark)); }
-
-/* icon-wrap suelto (Objetivos): centrado + degradado de marca por defecto */
-.icon-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ro-white);
-  background: var(--ro-gradient);
-  border-radius: 14px;
-}
-
-.chip-nav-amber:hover, .chip-nav-amber.active { border-color: var(--ro-amber-dark) !important; color: var(--ro-amber-dark) !important; }
-.chip-nav-magenta:hover, .chip-nav-magenta.active { border-color: var(--ro-magenta) !important; color: var(--ro-magenta) !important; }
-.chip-nav-purple:hover, .chip-nav-purple.active { border-color: var(--ro-purple) !important; color: var(--ro-purple) !important; }
-.chip-nav-gold:hover, .chip-nav-gold.active { border-color: var(--ro-amber-deep) !important; color: var(--ro-amber-deep) !important; }
-.chip-nav-magdeep:hover, .chip-nav-magdeep.active { border-color: var(--ro-magenta-deep) !important; color: var(--ro-magenta-deep) !important; }
-
-/* ---------- Galería: marco de color halftone al pasar el mouse ---------- */
-.gallery-box { position: relative; }
-.gallery-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: 16px;
-  box-shadow: inset 0 0 0 0 transparent;
-  transition: box-shadow 0.3s ease;
-  pointer-events: none;
-}
-.gallery-ring-amber:hover::before { box-shadow: inset 0 0 0 4px var(--ro-amber); }
-.gallery-ring-magenta:hover::before { box-shadow: inset 0 0 0 4px var(--ro-magenta); }
-.gallery-ring-purple:hover::before { box-shadow: inset 0 0 0 4px var(--ro-purple); }
-.gallery-ring-gold:hover::before { box-shadow: inset 0 0 0 4px var(--ro-amber-deep); }
-
-/* Franja de puntos de color como separador decorativo entre secciones */
-.dot-divider {
-  height: 34px;
-  background-image: radial-gradient(var(--ro-amber) 1.6px, transparent 1.8px),
-                     radial-gradient(var(--ro-magenta) 1.6px, transparent 1.8px),
-                     radial-gradient(var(--ro-purple) 1.6px, transparent 1.8px);
-  background-size: 54px 22px, 54px 22px, 54px 22px;
-  background-position: 0 0, 18px 11px, 36px 0;
-  opacity: 0.55;
-}
-
-/* Panel del formulario de contacto: esquina con trama de puntos de color */
-.contact-form-card { position: relative; overflow: hidden; }
-.contact-form-card::before {
-  content: "";
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background-image: radial-gradient(var(--ro-magenta) 2px, transparent 2.2px);
-  background-size: 12px 12px;
-  -webkit-mask-image: radial-gradient(circle, black 55%, transparent 78%);
-  mask-image: radial-gradient(circle, black 55%, transparent 78%);
-  opacity: 0.35;
-  pointer-events: none;
 }
 
 /* ---------- Responsive ---------- */

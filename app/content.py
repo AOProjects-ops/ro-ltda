@@ -33,6 +33,18 @@ ABOUT_INTRO = (
     "resultados medibles y sostenibles, alineados con sus objetivos de negocio."
 )
 
+HERO_TITLE = "Talento estratégico, tecnología avanzada, resultados reales"
+
+HERO_TAGLINE = (
+    "En RO LTDA, guiados por nuestros principios y comprometidos con la "
+    "excelencia, somos el aliado estratégico para responder a los desafíos "
+    "actuales de su organización en la gestión integral del talento humano. "
+    "Con más de 20 años de trayectoria y experiencia, combinamos tecnología, "
+    "conocimiento experto y un enfoque profundamente humano para transformar "
+    "cómo las empresas atraen, desarrollan y fidelizan a su gente, con "
+    "resultados medibles y sostenibles, alineados con sus objetivos de negocio."
+)
+
 HISTORY = (
     "RO LTDA se constituyó en el departamento de La Guajira, realizando trabajos "
     "importantes y de alta confidencialidad para Carbones del Cerrejón Limited: "

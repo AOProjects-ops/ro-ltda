@@ -26,9 +26,9 @@ class Config:
     COMPANY_NAME = "RO"
     COMPANY_LEGAL_NAME = "RO LTDA"
     COMPANY_TAGLINE = "Conectamos talento, tecnología y estrategia. Impulsamos resultados"
-    COMPANY_EMAIL = os.environ.get("COMPANY_EMAIL", "contacto@roltda.com")
-    COMPANY_PHONE = os.environ.get("COMPANY_PHONE", "+57 300 000 0000")
-    COMPANY_WHATSAPP = os.environ.get("COMPANY_WHATSAPP", "573000000000")
+    COMPANY_EMAIL = os.environ.get("COMPANY_EMAIL", "contacto@roltda.com.co")
+    COMPANY_PHONE = os.environ.get("COMPANY_PHONE", "+57 316 319 2548")
+    COMPANY_WHATSAPP = os.environ.get("COMPANY_WHATSAPP", "573163192548")
     COMPANY_ADDRESS = os.environ.get("COMPANY_ADDRESS", "La Guajira, Colombia")
 
 

@@ -8,7 +8,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, current_
 from app.forms import ContactForm
 from app.models import db, ContactMessage
 from app.content import (
-    MISSION, VISION, ABOUT_INTRO, HISTORY, OBJECTIVES, VALUES,
+    MISSION, VISION, ABOUT_INTRO, HERO_TITLE, HERO_TAGLINE, HISTORY, OBJECTIVES, VALUES,
     SUCCESS_FACTORS, CLIENTS, SERVICE_CATEGORIES, STATS,
     GALLERY_IMAGES, HERO_IMAGE,
 )
@@ -26,6 +26,8 @@ def home():
         mission=MISSION,
         vision=VISION,
         about_intro=ABOUT_INTRO,
+        hero_title=HERO_TITLE,
+        hero_tagline=HERO_TAGLINE,
         values=VALUES,
         stats=STATS,
         clients=CLIENTS,
@@ -58,14 +60,10 @@ def services():
 
 @main_bp.route("/galeria")
 def gallery():
-    # La foto de equipo del hero aparece primero, seguida del resto en orden aleatorio.
-    rest = GALLERY_IMAGES.copy()
-    random.shuffle(rest)
-    return render_template(
-        "gallery.html",
-        gallery_images=rest,
-        hero_image=HERO_IMAGE,
-    )
+    # La foto principal de la portada NO se muestra aquí: vive solo en el hero.
+    images = GALLERY_IMAGES.copy()
+    random.shuffle(images)
+    return render_template("gallery.html", gallery_images=images)
 
 
 @main_bp.route("/contacto", methods=["GET", "POST"])

@@ -2,6 +2,7 @@
 Application factory — RO LTDA, sitio web v2.
 """
 import os
+import re
 from datetime import datetime
 from flask import Flask
 from flask_wtf import CSRFProtect
@@ -46,6 +47,7 @@ def create_app(config_name=None):
             "company_tagline": app.config["COMPANY_TAGLINE"],
             "company_email": app.config["COMPANY_EMAIL"],
             "company_phone": app.config["COMPANY_PHONE"],
+            "company_phone_tel": re.sub(r"[^\d+]", "", app.config["COMPANY_PHONE"]),
             "company_whatsapp": app.config["COMPANY_WHATSAPP"],
             "company_address": app.config["COMPANY_ADDRESS"],
             "current_year": datetime.utcnow().year,

@@ -3,28 +3,20 @@
 {% block description %}Galería de fotos del equipo de {{ company_legal_name }} en su día a día. Haz clic en cualquier foto para ampliarla.{% endblock %}
 
 {% block content %}
-<section class="hero-inner hero-gallery py-5">
+<section class="hero py-5">
   <div class="container">
     <span class="eyebrow">Nuestro equipo</span>
-    <h1 class="mt-2 mb-3">Galería RO</h1>
+    <h1 class="mt-2 mb-3">Galería <span class="text-gradient">RO</span></h1>
     <p class="lead" style="max-width:760px;">Las personas que hacen posible cada servicio, todos los días. Haz clic en cualquier foto para ampliarla.</p>
   </div>
 </section>
 
-<div class="dot-divider"></div>
-
 <section>
   <div class="container">
     <div class="row g-3 g-md-4">
-      <div class="col-6 col-md-4">
-        <div class="gallery-box gallery-box-tall lightbox-trigger gallery-ring-magenta">
-          <img src="{{ url_for('static', filename='img/' + hero_image) }}" alt="Equipo completo de {{ company_legal_name }}">
-          <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
-        </div>
-      </div>
       {% for img in gallery_images %}
       <div class="col-6 col-md-4">
-        <div class="gallery-box lightbox-trigger {{ loop.cycle('gallery-ring-amber','gallery-ring-purple','gallery-ring-gold','gallery-ring-magenta') }}">
+        <div class="gallery-box lightbox-trigger">
           <img src="{{ url_for('static', filename='img/gallery/' + img) }}" loading="lazy" alt="Equipo de {{ company_legal_name }}">
           <div class="lightbox-zoom-hint"><i class="bi bi-arrows-angle-expand"></i></div>
         </div>

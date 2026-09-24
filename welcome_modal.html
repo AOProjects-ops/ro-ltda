@@ -1,0 +1,33 @@
+<!-- Modal de bienvenida (se muestra automáticamente al entrar, como en la referencia) -->
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content welcome-modal-content">
+      <button type="button" class="btn-close btn-close-white welcome-modal-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      <div class="modal-body">
+        <span class="welcome-badge">Cotiza con nosotros</span>
+        <h2 class="mt-3 mb-3" id="welcomeModalLabel">Convertimos los desafíos en <span class="text-gradient">resultados</span>, potenciando talento, estrategias y operaciones para transformar las organizaciones</h2>
+        <p class="mb-4" style="color:rgba(255,255,255,0.75);">Explora nuestro portafolio y descubre la solución que tu organización necesita hoy mismo.</p>
+
+        <div class="row g-2 mb-4">
+          {% for cat in service_categories %}
+          <div class="col-sm-6">
+            <a href="{{ url_for('main.services') }}#{{ cat.slug }}" class="welcome-pill" data-bs-dismiss="modal">
+              <i class="bi {{ cat.icon }} me-2"></i>{{ cat.title }}
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="{{ url_for('main.services') }}" class="btn btn-ro" data-bs-dismiss="modal">Ver portafolio completo</a>
+          <a href="{{ url_for('main.contact') }}" class="btn btn-ro-outline" data-bs-dismiss="modal">Ir a Contacto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Botón flotante que reabre el modal de bienvenida -->
+<button type="button" class="welcome-float" data-bs-toggle="modal" data-bs-target="#welcomeModal">
+  ✨ Cotiza aquí
+</button>

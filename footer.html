@@ -1,0 +1,26 @@
+<footer class="ro-footer">
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <img src="{{ url_for('static', filename='img/logo-dark-bg.png') }}" alt="Logo {{ company_legal_name }}" height="32">
+        <span>&copy; {{ current_year }} {{ company_legal_name }}. Todos los derechos reservados.</span>
+      </div>
+      <div class="footer-social">
+        <span class="footer-social-label">Síguenos en:</span>
+        <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Política de privacidad</a>
+        <span class="footer-legal-sep">|</span>
+        <a href="#">Términos y condiciones</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/{{ company_whatsapp }}?text=Hola%20RO%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n."
+   class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>

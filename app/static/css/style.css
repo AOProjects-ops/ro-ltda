@@ -45,6 +45,11 @@ h1, h2, h3, h4, .navbar-brand {
 .text-gradient {
   color: var(--ro-magenta);
 }
+/* Dentro de los encabezados oscuros (Servicios, Galería, Contacto, 404),
+   el título va todo en blanco, sin resaltar ninguna palabra en color */
+.hero .text-gradient {
+  color: var(--ro-white);
+}
 
 a { color: var(--ro-magenta); text-decoration: none; }
 a:hover { color: var(--ro-purple); }
@@ -678,7 +683,7 @@ section { padding: 5rem 0; }
 .contact-info-panel {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(155deg, var(--ro-amber) 0%, var(--ro-amber-dark) 45%, var(--ro-magenta) 100%);
+  background: linear-gradient(155deg, var(--ro-amber) 0%, var(--ro-amber-dark) 55%, var(--ro-amber-deep) 100%);
   border-radius: 18px;
   padding: 1.8rem 1.6rem;
   height: 100%;
@@ -889,12 +894,17 @@ section { padding: 5rem 0; }
   height: 44px;
   min-width: 44px;
   border-radius: 12px;
-  background: var(--ro-ink);
-  color: var(--ro-amber);
+  background: var(--ro-amber-dark);
+  color: var(--ro-white);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* Intercalar los colores corporativos vivos en cada ícono, en vez de fondo negro */
+.contact-info-item:nth-of-type(1) .icon-wrap { background: var(--ro-amber-dark); }
+.contact-info-item:nth-of-type(2) .icon-wrap { background: var(--ro-magenta); }
+.contact-info-item:nth-of-type(3) .icon-wrap { background: var(--ro-purple); }
+.contact-info-item:nth-of-type(4) .icon-wrap { background: var(--ro-amber); }
 .form-control:focus, .form-select:focus {
   border-color: var(--ro-amber);
   box-shadow: 0 0 0 0.2rem rgba(245, 166, 35, 0.2);
@@ -931,11 +941,18 @@ footer.ro-footer a:hover { color: var(--ro-amber); }
 .footer-social-label { margin-right: 0.2rem; }
 footer.ro-footer .social-icon {
   width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
   display: inline-flex; align-items: center; justify-content: center;
-  transition: background 0.2s ease;
+  color: var(--ro-white);
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
-footer.ro-footer .social-icon:hover { background: var(--ro-amber); color: var(--ro-ink); }
+footer.ro-footer .social-icon:hover { transform: translateY(-2px); filter: brightness(1.1); }
+/* Colores de marca reales para cada red social */
+footer.ro-footer .social-icon[aria-label="Facebook"] { background: #1877F2; }
+footer.ro-footer .social-icon[aria-label="LinkedIn"] { background: #0A66C2; }
+footer.ro-footer .social-icon[aria-label="Instagram"] {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
 .footer-legal {
   display: flex;
   align-items: center;

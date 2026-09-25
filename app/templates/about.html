@@ -30,15 +30,15 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-md-6">
-        <div class="ro-card">
-          <div class="icon-wrap"><i class="bi bi-bullseye"></i></div>
+        <div class="service-card service-card-magenta">
+          <div class="service-card-icon"><i class="bi bi-bullseye"></i></div>
           <h4>Misión</h4>
           <p class="mb-0 text-muted">{{ mission }}</p>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="ro-card">
-          <div class="icon-wrap"><i class="bi bi-eye"></i></div>
+        <div class="service-card service-card-amber">
+          <div class="service-card-icon"><i class="bi bi-eye"></i></div>
           <h4>Visión</h4>
           <p class="mb-0 text-muted">{{ vision }}</p>
         </div>
@@ -77,8 +77,8 @@
     <div class="row g-4">
       {% for v in values %}
       <div class="col-sm-6 col-lg-4">
-        <div class="ro-card text-center">
-          <div class="icon-wrap mx-auto"><i class="bi {{ v.icon }}"></i></div>
+        <div class="service-card service-card-{{ loop.cycle('magenta', 'amber', 'purple', 'gold', 'pastel-rose', 'pastel-peach', 'pastel-lilac') }} text-center">
+          <div class="service-card-icon mx-auto"><i class="bi {{ v.icon }}"></i></div>
           <h6>{{ v.title }}</h6>
           <p class="mb-0 text-muted small">{{ v.text }}</p>
         </div>
@@ -98,8 +98,8 @@
     <div class="row g-4">
       {% for f in success_factors %}
       <div class="col-sm-6 col-lg-4">
-        <div class="ro-card">
-          <div class="icon-wrap"><i class="bi {{ f.icon }}"></i></div>
+        <div class="service-card service-card-{{ loop.cycle('purple', 'gold', 'magenta', 'amber', 'pastel-lilac') }}">
+          <div class="service-card-icon"><i class="bi {{ f.icon }}"></i></div>
           <h6>{{ f.title }}</h6>
           <p class="mb-0 text-muted small">{{ f.text }}</p>
         </div>

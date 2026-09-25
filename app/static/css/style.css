@@ -8,10 +8,13 @@
   --ro-amber: #FFB300;       /* dorado vívido (caras superiores del cubo) */
   --ro-amber-dark: #FA7606;  /* naranja vívido, tono de la imagen de referencia */
   --ro-amber-deep: #E8490A;  /* naranja-rojo profundo, para resplandores */
-  --ro-magenta: #A31C90;     /* magenta con toque de morado, tono del lazo */
-  --ro-magenta-deep: #6E0A63;/* magenta-morado oscuro, ajustado al mismo tono */
+  --ro-magenta: #A5034F;     /* magenta exacto del lazo — color único para todos los botones */
+  --ro-magenta-deep: #7A0239;/* variante oscura, solo para hover */
   --ro-purple: #8425F0;      /* morado vívido, complementa el degradado del cubo */
   --ro-purple-deep: #3E1278; /* morado profundo, para fondos oscuros */
+  --ro-pastel-rose: #F0A8CC;   /* magenta pastel */
+  --ro-pastel-peach: #FFC98A;  /* naranja/ámbar pastel */
+  --ro-pastel-lilac: #C7B2F0;  /* morado pastel */
   --ro-ink: #10082B;         /* navy-morado muy oscuro, para navbar/franjas oscuras */
   --ro-ink-soft: #1B0F3D;
   --ro-gray-100: #F6F5F8;
@@ -23,8 +26,8 @@
   --ro-dark-gradient: var(--ro-ink);
 
   /* Color estandarizado de TODOS los botones sólidos del sitio (tono de "Contáctanos") */
-  --ro-btn-gradient: linear-gradient(135deg, #6B0240 0%, #A5034F 45%, #93157F 75%, #7A1C8C 100%);
-  --ro-btn-gradient-hover: linear-gradient(135deg, #5A0235 0%, #8F0244 45%, #7E1069 75%, #641877 100%);
+  --ro-btn-gradient: var(--ro-magenta);
+  --ro-btn-gradient-hover: var(--ro-magenta-deep);
   --ro-btn-shadow: rgba(163, 28, 144, 0.4);
 }
 
@@ -648,6 +651,15 @@ section { padding: 5rem 0; }
 .service-card-gold { border-bottom-color: var(--ro-amber); }
 .service-card-gold .service-card-icon { background: linear-gradient(135deg, var(--ro-amber), var(--ro-amber-dark)); }
 .service-card-gold::after { background: var(--ro-amber); }
+.service-card-pastel-rose { border-bottom-color: var(--ro-pastel-rose); }
+.service-card-pastel-rose .service-card-icon { background: var(--ro-pastel-rose); color: var(--ro-magenta-deep); }
+.service-card-pastel-rose::after { background: var(--ro-pastel-rose); }
+.service-card-pastel-peach { border-bottom-color: var(--ro-pastel-peach); }
+.service-card-pastel-peach .service-card-icon { background: var(--ro-pastel-peach); color: var(--ro-amber-deep); }
+.service-card-pastel-peach::after { background: var(--ro-pastel-peach); }
+.service-card-pastel-lilac { border-bottom-color: var(--ro-pastel-lilac); }
+.service-card-pastel-lilac .service-card-icon { background: var(--ro-pastel-lilac); color: var(--ro-purple-deep); }
+.service-card-pastel-lilac::after { background: var(--ro-pastel-lilac); }
 
 /* ---------- Mini-tarjetas de valores ---------- */
 .value-mini-card {
@@ -940,19 +952,27 @@ footer.ro-footer a:hover { color: var(--ro-amber); }
 }
 .footer-social-label { margin-right: 0.2rem; }
 footer.ro-footer .social-icon {
-  width: 34px; height: 34px; border-radius: 50%;
+  position: relative;
+  width: 36px; height: 36px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--ro-amber-dark), var(--ro-magenta));
+  font-size: 0.9rem;
+  transition: transform 0.25s ease;
+}
+footer.ro-footer .social-icon::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--ro-ink);
+  border-radius: 50%;
+  z-index: 0;
+}
+footer.ro-footer .social-icon i {
+  position: relative;
+  z-index: 1;
   color: var(--ro-white);
-  font-size: 0.95rem;
-  transition: transform 0.2s ease, filter 0.2s ease;
 }
-footer.ro-footer .social-icon:hover { transform: translateY(-2px); filter: brightness(1.1); }
-/* Colores de marca reales para cada red social */
-footer.ro-footer .social-icon[aria-label="Facebook"] { background: #1877F2; }
-footer.ro-footer .social-icon[aria-label="LinkedIn"] { background: #0A66C2; }
-footer.ro-footer .social-icon[aria-label="Instagram"] {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
+footer.ro-footer .social-icon:hover { transform: translateY(-3px) scale(1.07); }
 .footer-legal {
   display: flex;
   align-items: center;
